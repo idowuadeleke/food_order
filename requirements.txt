@@ -3,6 +3,6 @@ Flask-RESTful
 Flask-JWT
 Flask-SQLAlchemy
 uwsgi
-psycopg2
+psycopg2-binary
 flask_cors
 cryptography==2.0
