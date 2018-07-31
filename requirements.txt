@@ -1,0 +1,8 @@
+FLask
+Flask-RESTful
+Flask-JWT
+Flask-SQLAlchemy
+uwsgi
+psycopg2
+flask_cors
+cryptography==2.0
