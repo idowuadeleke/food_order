@@ -12,7 +12,7 @@ class OrderModel(db.Model):
     total=db.Column(db.Float(precision=2))
     quantity=db.Column(db.Integer)
     #date=db.Column(db.date)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_name= db.Column(db.Integer, db.ForeignKey('users.username'))
    
     order_items=db.relationship('OrderItemModel')
     
@@ -21,21 +21,21 @@ class OrderModel(db.Model):
     
     
 
-    def __init__(self,date,quantity,status,total,user_id):
+    def __init__(self,date,quantity,status,total,user_name):
         self.quantity= quantity
         self.status = status
         self.total = total
-        self.user_id= user_id
+        self.user_name= user_name
 
 
     def json(self):
         order_item=OrderItemModel.find_by_order_id(self.id).all()
         return {'id':self.id,'status': self.status,'total': self.total,
-        'user_id':self.user_id,'items':[item.json() for item in order_item]}
+        'username':self.user_name,'items':[item.json() for item in order_item]}
 
     @classmethod
-    def find_by_user(cls, user_id):
-        return cls.query.filter_by(user_id=user_id)
+    def find_by_user(cls, user_name):
+        return cls.query.filter_by(user_name=user_name)
 
     @classmethod
     def find_by_order_id(cls,_id):

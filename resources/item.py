@@ -11,6 +11,12 @@ class Item(Resource):
                         help="This field cannot be left blank!"
                         )
 
+    parser.add_argument('quantity',
+                        type=float,
+                        required=True,
+                        help="This field cannot be left blank!"
+                        )
+
     def get(self, _id):
         item = ItemModel.find_by_id(_id)
         if item:
@@ -24,6 +30,7 @@ class Item(Resource):
         data = Item.parser.parse_args()
 
         item = ItemModel(name, **data)
+
 
         try:
             item.save_to_db()

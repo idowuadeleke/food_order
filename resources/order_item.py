@@ -26,6 +26,16 @@ class OrderItem(Resource):
 
         orderitem = OrderItemModel(**data)
 
+        #check=orderitem.item_quantity_check()
+
+        #if check==1:
+            #return {"message": "item not available"}
+
+        #elif check==2:
+            #return {"message": "you have requested for more than the available quantity"}
+
+        #elif check==3:
+
         try:
             orderitem.save_to_db()
         except:

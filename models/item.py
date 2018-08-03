@@ -8,14 +8,16 @@ class ItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80))
     price = db.Column(db.Float(precision=2))
+    quantity= db.Column(db.Integer)
 
 
-    def __init__(self, name, price):
+    def __init__(self, name, price,quantity):
         self.name = name
         self.price = price
+        self.quantity=quantity
 
     def json(self):
-        return {'id':self.id,'name': self.name, 'price': self.price}
+        return {'id':self.id,'name': self.name, 'price': self.price, 'quantity':self.quantity}
 
     @classmethod
     def find_by_name(cls, name):

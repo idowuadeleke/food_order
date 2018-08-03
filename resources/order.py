@@ -48,9 +48,9 @@ class Order(Resource):
         return {'message': 'Item not found'}, 404
         
             
-class OrderByUserId(Resource):
-    def get(self, user_id):
-        filtered_order = OrderModel.find_by_user(user_id).first()
+class OrderByUserName(Resource):
+    def get(self, user_name):
+        filtered_order = OrderModel.find_by_user(user_name).first()
         if filtered_order:
             return filtered_order.json()
         return {'message': 'Item not found'}, 404

@@ -20,9 +20,19 @@ class OrderItemModel(db.Model):
         self.order_id= order_id
         self.item_id=item_id
 
+
     def json(self):
         return {'order_item_id':self.id,'quantity': self.quantity,'order_id': self.order_id,'name':self.item.name,'price':self.item.price}
 
+    
+    #def item_quantity_check(self):
+        #if self.item.quantity==0:
+            #return 1
+        #elif self.item.quantity < self.quantity:
+            #return 2
+        #elif self.item.quantity >= self.quantity:
+            #self.item.quantity=self.item.quantity - self.quantity
+            #return 3
 
     @classmethod
     def find_by_order_id(cls,order_id):
