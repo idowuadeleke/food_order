@@ -27,9 +27,9 @@ class UserList(Resource):
     def get(self):
         return  list(map(lambda x: x.json(), UserModel.query.all()))
 
-class UserById(Resource):
-    def get(self,id):
-        user=UserModel.find_by_id(id)
+class UserByName(Resource):
+    def get(self,username):
+        user=UserModel.find_by_username(username)
         return user.json()
       
 

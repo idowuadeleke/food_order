@@ -8,21 +8,21 @@ class OrderItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quantity=db.Column(db.Integer)
 
-    item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
+    item_name = db.Column(db.Integer, db.ForeignKey('items.name'))
     item= db.relationship('ItemModel')
     
 
     order_id = db.Column(db.Integer, db.ForeignKey('orders.id'))
     
 
-    def __init__(self,quantity,item_id,order_id):
+    def __init__(self,quantity,item_name,order_id):
         self.quantity=quantity
         self.order_id= order_id
-        self.item_id=item_id
+        self.item_name=item_name
 
 
     def json(self):
-        return {'order_item_id':self.id,'quantity': self.quantity,'order_id': self.order_id,'name':self.item.name,'price':self.item.price}
+        return {'id':self.item.id,'name':self.item_name,'price':self.item.price} #
 
     
     #def item_quantity_check(self):
@@ -46,7 +46,10 @@ class OrderItemModel(db.Model):
     def find_by_item_id(cls,item_id):
         return cls.query.filter_by(item_id=item_id)
         
-
+    @classmethod
+    def find_by_item_name(cls,name):
+        return cls.query.filter_by(item_name=name)
+        
 
   
 

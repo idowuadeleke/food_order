@@ -16,7 +16,7 @@ class OrderItem(Resource):
                         help="Every item orderd needs an order id."
                         )
     parser.add_argument('item_id',
-                        type=int,
+                        type=str,
                         required=True,
                         help="Every item orderd needs an order id."
                         )

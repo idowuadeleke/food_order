@@ -5,8 +5,8 @@ from db import db
 class ItemModel(db.Model):
     __tablename__ = 'items'
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80))
+    id = db.Column(db.Integer)
+    name = db.Column(db.String(80), primary_key=True)
     price = db.Column(db.Float(precision=2))
     quantity= db.Column(db.Integer)
 

@@ -41,8 +41,8 @@ class Order(Resource):
 
         return order.json(), 201
 
-    def get(self, order_id):
-        filtered_order = OrderModel.find_by_order_id(order_id).first()
+    def get(self, ref):
+        filtered_order = OrderModel.find_by_reference(ref).first()
         if filtered_order:
             return filtered_order.json()
         return {'message': 'Item not found'}, 404
@@ -50,20 +50,23 @@ class Order(Resource):
             
 class OrderByUserName(Resource):
     def get(self, user_name):
-        filtered_order = OrderModel.find_by_user(user_name).first()
+        filtered_order = OrderModel.find_by_user(user_name)
+        a=[]
         if filtered_order:
-            return filtered_order.json()
-        return {'message': 'Item not found'}, 404
+            for order in filtered_order:
+                a.append(order.json())
+        return a
+    
 
 class OrderList(Resource):
     def get(self):
-        return {'orders': list(map(lambda x: x.json(), OrderModel.query.all()))}
+        return  list(map(lambda x: x.json(), OrderModel.query.all()))
    
 
-class OrderByItemId(Resource):
-    def get(self, item_id):
+class OrderByItemName(Resource):
+    def get(self,name):
         a=[]
-        filtered_order = OrderModel.find_by_item_id(item_id)
+        filtered_order = OrderModel.find_by_item_name(name)
         for item in filtered_order:
             order_id=item.order_id
             fil_order = OrderModel.find_by_order_id(order_id).first()
