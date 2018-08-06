@@ -8,7 +8,7 @@ class OrderItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quantity=db.Column(db.Integer)
 
-    item_name = db.Column(db.Integer, db.ForeignKey('items.name'))
+    item_name = db.Column(db.String, db.ForeignKey('items.name'))
     item= db.relationship('ItemModel')
     
 
