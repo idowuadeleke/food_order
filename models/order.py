@@ -12,7 +12,7 @@ class OrderModel(db.Model):
     total=db.Column(db.Float(precision=2))
     quantity=db.Column(db.Integer)
     reference=db.Column(db.Integer)
-    user_name= db.Column(db.Integer, db.ForeignKey('users.username'))
+    user_name= db.Column(db.String, db.ForeignKey('users.username'))
    
     order_items=db.relationship('OrderItemModel')
     
